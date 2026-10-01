@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from schemas.usuario import UsuarioLogin
-router = APIRouter()
+router = APIRouter(prefix="/login", tags=["login"])
 
 @router.post("/login")
 def login(usuario: UsuarioLogin):

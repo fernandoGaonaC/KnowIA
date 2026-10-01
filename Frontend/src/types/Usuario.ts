@@ -7,5 +7,5 @@ export type Usuario = {
   correo: string;
   contrasena: string;
   rol: Rol;
-  intereses: Area[];
+  intereses: Area;
 };
