@@ -1,7 +1,9 @@
+import Navbar from "../components/Navegacion/Navbar"
+
 const Consultas = () => {
   return (
     <div>
-      Consultas Page
+   <Navbar></Navbar>
     </div>
   )
 }

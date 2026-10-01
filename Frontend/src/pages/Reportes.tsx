@@ -1,8 +1,10 @@
+import Navbar from "../components/Navegacion/Navbar"
 const Reportes = () => {
   return (
     <div>
-      Reportes Page
+   <Navbar></Navbar>
     </div>
+  
   )
 }
 

@@ -1,7 +1,10 @@
+import Formulario from "../components/Formularios/Formulario"
+import Navbar from "../components/Navegacion/Navbar"
 const Administracion = () => {
   return (
     <div>
-      Administracion Page
+      <Navbar></Navbar>
+      <Formulario modo="crear" onCrear={async (usuario) => {}}  ></Formulario>
     </div>
   )
 }
