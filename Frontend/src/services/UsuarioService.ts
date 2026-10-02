@@ -1,15 +1,14 @@
 import axios from "axios";
-import type { Usuario } from "../types/Usuario";
-
-const api = "http://localhost:8000/api/usuario/";
+import type { Usuario, UsuarioCreateDTO } from "../types/Usuario";
+const api= import.meta.env.VITE_DIRECCION_BACK ||"http://localhost:8000/api"
 
 const UsuarioService = {
-  obtenerUsuario: async () => {
-    return axios.get(api).then((response) => response.data);
+  obtenerUsuarios: async () => {
+    return axios.get(`${api}/usuario`).then((response) => response.data);
   },
 
-  crearUsuario: (usuario: Usuario) => {
-    return axios.post(api, usuario).then((response) => response.data);
+  crearUsuario: (usuario: UsuarioCreateDTO) => {
+    return axios.post(`${api}/usuario`, usuario).then((response) => response.data);
   },
 
   actualizarUsuario: (usuario: Usuario) => {

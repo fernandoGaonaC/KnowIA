@@ -8,9 +8,6 @@ const Consultas = () => {
   function handleChat(nuevoMensaje: Mensaje, onServerResponse: (respuesta: Mensaje) => void) {
     ConsultaService.obtenerRespuestas(nuevoMensaje)
       .then((mensajeDelServer) => {
-        // 🕵️‍♂️ 'mensajeDelServer' ya contiene directamente el objeto enviado por FastAPI
-        console.log("Datos limpios del servidor:", mensajeDelServer);
-
         const mensajeFinal: Mensaje = {
           // Usamos la información directa de la respuesta de forma segura
           id: mensajeDelServer?.id || (Date.now()).toString(),

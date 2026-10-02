@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { Mensaje } from '../types/Mensaje'
-const api="http://localhost:8000/api"
+const api= import.meta.env.VITE_DIRECCION_BACK ||"http://localhost:8000/api"
 
 const ConsultaService={
     obtenerRespuestas: async (mensaje: Mensaje) => {

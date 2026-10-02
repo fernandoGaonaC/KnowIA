@@ -42,9 +42,10 @@ const VentanaChat = ({ onSend }: VentanaChatProps) => {
             
             <div className="flex-1 overflow-y-auto flex flex-col gap-4">
                 {mensajes.map((mensaje) => (
-                    <Bubble key={mensaje.id} align={mensaje.remitente === 'usuario' ? 'end' : 'start'} variant={'default'}>
+                    <Bubble key={mensaje.id} align={mensaje.remitente === 'usuario' ? 'end' : 'start'} variant={mensaje.remitente=='server'?"secondary":"default"}>
                         <BubbleContent>{mensaje.contenido}</BubbleContent>
                     </Bubble>
+                    
                 ))}
             </div>
 

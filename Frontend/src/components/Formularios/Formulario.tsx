@@ -20,9 +20,9 @@ import {
 } from "../ui/select"
 import { ROLES, type Rol } from "../../types/Roles"
 import { AREAS, type Area } from "../../types/Areas"
-import type { Usuario } from "../../types/Usuario"
+import type { Usuario, UsuarioCreateDTO, UsuarioUpdateDTO } from "../../types/Usuario"
 
-// Estilos reutilizables (tema claro fijo)
+
 const labelClass = "text-sm font-medium text-gray-900"
 
 const controlClass =
@@ -47,12 +47,12 @@ const outlineButtonClass =
 type Props =
   | {
       modo: "crear"
-      onCrear: (usuario: Usuario) => Promise<void> | void
+      onCrear: (usuario: UsuarioCreateDTO) => Promise<void> | void
     }
   | {
       modo: "editar"
       usuario: Usuario
-      onEditar: (usuario: Usuario) => Promise<void> | void
+      onEditar: (usuario: UsuarioUpdateDTO) => Promise<void> | void
     }
 
 const Formulario = (props: Props) => {
@@ -65,14 +65,14 @@ const Formulario = (props: Props) => {
   const [correo, setCorreo] = useState("")
   const [contrasena, setContrasena] = useState("")
   const [rol, setRol] = useState<Rol | "">("")
-  const [intereses, setIntereses] = useState<Area | "">("")
+  const [interes, setIntereses] = useState<Area | "">("")
 
   const cargarValores = () => {
     setNombre(usuarioActual?.nombre ?? "")
     setCorreo(usuarioActual?.correo ?? "")
     setContrasena(usuarioActual?.contrasena ?? "")
     setRol(usuarioActual?.rol ?? "")
-    setIntereses(usuarioActual?.intereses ?? "")
+    setIntereses(usuarioActual?.interes ?? "")
   }
 
   const handleOpenChange = (abierto: boolean) => {
@@ -82,15 +82,15 @@ const Formulario = (props: Props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!rol || !intereses) return
+    if (!rol || !interes) return
 
-    const usuario: Usuario = {
+    const usuario: UsuarioCreateDTO  = {
       ...(usuarioActual?.id !== undefined && { id: usuarioActual.id }),
       nombre,
       correo,
       contrasena,
       rol,
-      intereses,
+      interes,
     }
 
     try {
@@ -189,7 +189,7 @@ const Formulario = (props: Props) => {
               <Field className="flex flex-col gap-1.5">
                 <label className={labelClass}>Intereses</label>
                 <Select
-                  value={intereses}
+                  value={interes}
                   onValueChange={(v) => setIntereses((v ?? "") as Area | "")}
                 >
                   <SelectTrigger className={controlClass}>
@@ -213,7 +213,7 @@ const Formulario = (props: Props) => {
             />
             <Button
               type="submit"
-              disabled={!rol || !intereses}
+              disabled={!rol || !interes}
               className={primaryButtonClass}
             >
               {esEdicion ? "Actualizar" : "Guardar"}
